@@ -2,6 +2,7 @@ package com.example.tugastraining3;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
                 edt.putString("password", password.getText().toString());
                 edt.apply();
                 Toast.makeText(getApplicationContext(),"Success", Toast.LENGTH_SHORT).show();
+               ProgressDialog pd = new ProgressDialog(MainActivity.this, ProgressDialog.STYLE_HORIZONTAL);
+               pd.setMessage("Anda di hack");
+               pd.setCancelable(false);
+               pd.show();
                 Intent pindahIntent = new Intent(getApplicationContext(), com.example.tugastraining3.MainActivity2.class);
                 startActivity(pindahIntent);
 
