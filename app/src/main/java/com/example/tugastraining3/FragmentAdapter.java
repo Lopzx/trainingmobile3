@@ -13,7 +13,12 @@ public class FragmentAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int i) {
-        Fragment fragment =  (i == 0) ? new FragmentTab() : new BlankFragment();
+        Fragment fragment =  new FragmentTab();
+        if(i == 2) {
+            fragment = new BlankFragment();
+        } else if( i == 1) {
+            fragment = new Recycler();
+        }
         Bundle args = new Bundle();
         // Our object is just an integer :-P
         fragment.setArguments(args);
@@ -22,14 +27,14 @@ public class FragmentAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
         if(position == 0) {
             return "Page Profile";
-        } else if(position == 1){
+        } else if(position == 2){
             return "Logout";
         }
         return "blank";
