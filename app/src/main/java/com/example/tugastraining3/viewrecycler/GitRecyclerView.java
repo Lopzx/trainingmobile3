@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tugastraining3.Database.AppDatabase;
 import com.example.tugastraining3.GithubServices.ApiServiceImplementation;
 import com.example.tugastraining3.GithubServices.DataLayer;
 import com.example.tugastraining3.GithubServices.GitUser;
@@ -22,9 +23,11 @@ import retrofit2.Response;
 
 public class GitRecyclerView extends RecyclerView.Adapter<GitUserHolder> {
     private final List<GitUser> listrepo;
+    private final AppDatabase _INSTANCE;
 
-    public GitRecyclerView (List<GitUser> list){
+    public GitRecyclerView (List<GitUser> list, AppDatabase InstanceFromParent){
         this.listrepo = list;
+        this._INSTANCE = InstanceFromParent;
     }
 
 
@@ -43,6 +46,7 @@ public class GitRecyclerView extends RecyclerView.Adapter<GitUserHolder> {
         // contents of the view with that element
 
         gitUserHolder.setRepo_title(listrepo.get(position).getName());
+        gitUserHolder.setRepo_click(listrepo.get(position), _INSTANCE);
         gitUserHolder.setRepo_link(listrepo.get(position).getFullName());
 
     }
